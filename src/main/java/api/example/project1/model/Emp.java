@@ -1,9 +1,22 @@
 package api.example.project1.model;
+
+
+import javax.persistence.*;
 import java.time.LocalDate;
 //Creating Schema of a Api
 
-//Initialization
+@Entity
+@Table
+
 public class Emp {
+    @Id 
+    @GeneratedValue( 
+        strategy= GenerationType.SEQUENCE,
+        generator = "emp_sequence"
+    )
+    @SequenceGenerator(
+            name = "emp_sequence",sequenceName="emp_sequence",allocationSize=1
+    )
     private Long id;
     private String name;
     private LocalDate dob;//Initializing the class not the variable
@@ -21,12 +34,14 @@ public class Emp {
         this.age = age;
     }
 
-   //Constructor with all the Args except id
-//    public Emp(String name, LocalDate dob, Integer age) {
-//        this.name = name;
-//        this.dob = dob;
-//        this.age = age;
-//    }
+
+
+    //Constructor with all the Args except id
+    public Emp(String name, LocalDate dob, Integer age) {
+        this.name = name;
+        this.dob = dob;
+        this.age = age;
+    }
 
     //Getters and Setters
     public Long getId() {
